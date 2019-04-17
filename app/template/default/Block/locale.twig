@@ -1,0 +1,27 @@
+{#
+ * Created by PhpStorm.
+ * User: lqdung
+ * Date: 4/16/2019
+ * Time: 10:52 AM
+#}
+{% set locale = app.session.get('_locale', 'en') %}
+<div class="ec-headerRole__locale">
+    <form method="post" action="?">
+    <select name="locale">
+        <option value="en" {% if locale == 'en' %}selected="selected"{% endif %}>EN</option>
+        <option value="vi" {% if locale == 'vi' %}selected="selected"{% endif %}>VI</option>
+    </select>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        if ($(".ec-headerNaviRole__right")) {
+            $(".ec-headerNaviRole__right").append($(".ec-headerRole__locale"));
+        }
+        $("select[name=locale]").on('change', function (e) {
+            let $form = $(this).parent("form");
+            $form.submit();
+        });
+    });
+</script>

@@ -134,6 +134,8 @@ class CategoryRepository extends AbstractRepository
                 ->execute();
         }
 
+        $Category->setTranslatableLocale('vi_vn');
+
         $em = $this->getEntityManager();
         $em->persist($Category);
         $em->flush($Category);
@@ -161,5 +163,19 @@ class CategoryRepository extends AbstractRepository
         $em = $this->getEntityManager();
         $em->remove($Category);
         $em->flush($Category);
+    }
+
+    public function searchaaa()
+    {
+        $q = $this->createQueryBuilder('c')
+            ->where("c.name like '%EN%'");
+
+        $qr = $q->getQuery();
+        $qr->setHint(
+            \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
+            'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+
+        return $qr->getResult();
     }
 }

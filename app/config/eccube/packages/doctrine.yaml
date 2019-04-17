@@ -38,3 +38,10 @@ doctrine:
             incomplete_order_status_hidden:
                 class: Eccube\Doctrine\Filter\OrderStatusFilter
                 enabled: false
+        mappings:
+            translatable:
+                type: annotation
+                prefix: Gedmo\Translatable\Entity
+                dir: "%kernel.root_dir%/../../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                alias: Gedmo # (optional) it will default to the name set for the mapping
+#                is_bundle: false

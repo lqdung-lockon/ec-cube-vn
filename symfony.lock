@@ -2,6 +2,9 @@
     "behat/gherkin": {
         "version": "v4.5.1"
     },
+    "behat/transliterator": {
+        "version": "v1.2.0"
+    },
     "bheller/images-generator": {
         "version": "1.0.1"
     },
@@ -143,6 +146,9 @@
     "fzaninotto/faker": {
         "version": "v1.7.1"
     },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.37"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.0"
     },
@@ -259,6 +265,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.0"
+    },
+    "ralouphie/getallheaders": {
+        "version": "2.0.5"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"

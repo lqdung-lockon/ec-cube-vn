@@ -15,6 +15,8 @@ namespace Eccube\Entity;
 
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Translatable\Translatable;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 if (!class_exists('\Eccube\Entity\Category')) {
     /**
@@ -26,8 +28,37 @@ if (!class_exists('\Eccube\Entity\Category')) {
      * @ORM\HasLifecycleCallbacks()
      * @ORM\Entity(repositoryClass="Eccube\Repository\CategoryRepository")
      */
-    class Category extends \Eccube\Entity\AbstractEntity
+    class Category extends \Eccube\Entity\AbstractEntity implements Translatable
     {
+        /**
+         * @Gedmo\Locale
+         * Used locale to override Translation listener`s locale
+         * this is not a mapped field of entity metadata, just a simple property
+         * and it is not necessary because globally locale can be set in listener
+         */
+        private $locale;
+
+        /**
+         * @return mixed
+         */
+        public function getLocale()
+        {
+            return $this->locale;
+        }
+
+        /**
+         * @param mixed $locale
+         */
+        public function setLocale($locale): void
+        {
+            $this->locale = $locale;
+        }
+
+        public function setTranslatableLocale($locale)
+        {
+            $this->locale = $locale;
+        }
+
         /**
          * @return string
          */
@@ -153,6 +184,7 @@ if (!class_exists('\Eccube\Entity\Category')) {
         /**
          * @var string
          *
+         * @Gedmo\Translatable
          * @ORM\Column(name="category_name", type="string", length=255)
          */
         private $name;
@@ -227,6 +259,7 @@ if (!class_exists('\Eccube\Entity\Category')) {
          */
         public function __construct()
         {
+            $this->locale = 'en_us';
             $this->ProductCategories = new \Doctrine\Common\Collections\ArrayCollection();
             $this->Children = new \Doctrine\Common\Collections\ArrayCollection();
         }

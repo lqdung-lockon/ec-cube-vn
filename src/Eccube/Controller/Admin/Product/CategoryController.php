@@ -89,7 +89,11 @@ class CategoryController extends AbstractController
             }
         }
 
+        $aaa = $this->categoryRepository->searchaaa();
+        dump($aaa);
+
         $Categories = $this->categoryRepository->getList($Parent);
+        dump($Categories);
 
         // ツリー表示のため、ルートからのカテゴリを取得
         $TopCategories = $this->categoryRepository->getList(null);

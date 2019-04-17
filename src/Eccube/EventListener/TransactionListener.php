@@ -84,6 +84,14 @@ class TransactionListener implements EventSubscriberInterface
         $Connection->setTransactionIsolation(TransactionIsolationLevel::READ_COMMITTED);
         $this->em->beginTransaction();
         log_debug('Begin Transaction.');
+
+        // locale
+        $request = $event->getRequest();
+        if ($request->isMethod('POST')) {
+            $locale = $request->get('locale', 'en');
+            dump($locale);
+            $request->getSession()->set('_locale', $locale);
+        }
     }
 
     /**
